@@ -403,3 +403,10 @@ em { font-style: italic; }
   .about__img--sm { border-width: 6px; }
   .btn { padding: 0 24px; }
 }
+
+/* Service photos: one shared panel on desktop; on phones each photo opens inside its own item */
+.svc__pic { display: none; }
+@media (max-width: 960px) {
+  .svc__media { display: none; }
+  .svc__pic { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r); margin: 0 0 28px; }
+}
