@@ -1,0 +1,9 @@
+# Local tooling / preview helpers
+.claude/
+
+# Raw originals (the site uses the cleaned copies in img/ and video/)
+assets/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
