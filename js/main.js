@@ -10,7 +10,13 @@
        city     : e.g. "Hyderabad"
      Anything left empty is simply not shown.
      ───────────────────────────────────────────────────────────── */
-  const CONFIG = { whatsapp: '', email: '', instagram: '', city: '' };
+  const CONFIG = {
+    whatsapp: '918657193112',
+    phoneDisplay: '+91 86571 93112',
+    email: '',
+    instagram: 'theartevent.in',
+    city: 'Mumbai & Navi Mumbai',
+  };
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
@@ -265,7 +271,8 @@
   const contactList = $('#contact-list');
   const digits = CONFIG.whatsapp.replace(/\D/g, '');
   const rows = [];
-  if (digits) rows.push(['WhatsApp', `https://wa.me/${digits}`, `+${digits}`]);
+  const shown = CONFIG.phoneDisplay || `+${digits}`;
+  if (digits) rows.push(['WhatsApp', `https://wa.me/${digits}`, shown], ['Call', `tel:+${digits}`, shown]);
   if (CONFIG.email) rows.push(['Email', `mailto:${CONFIG.email}`, CONFIG.email]);
   if (CONFIG.instagram) rows.push(['Instagram', `https://instagram.com/${CONFIG.instagram}`, `@${CONFIG.instagram}`]);
   if (CONFIG.city) rows.push(['Based in', '', CONFIG.city]);
@@ -284,6 +291,7 @@
     if (!href) v.style.fontWeight = '600';
     li.append(k, v);
     contactList.append(li);
+    if (label === 'Call') return; // same number as WhatsApp; keep the footer list short
     const fl = document.createElement('li');
     fl.append(makeLink(href, text));
     footerContact.append(fl);
