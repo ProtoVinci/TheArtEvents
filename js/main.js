@@ -252,20 +252,13 @@
     palettes.append(li);
   });
 
-  /* ───────── Films ───────── */
-  const films = $$('.film');
-  films.forEach((film) => {
-    const video = $('video', film);
-    const play = $('.film__play', film);
-    video.addEventListener('contextmenu', (e) => e.preventDefault()); // no "Save video as" menu
-    play.addEventListener('click', () => {
-      films.forEach((f) => { if (f !== film) $('video', f).pause(); });
-      if (!video.dataset.started) { video.dataset.started = '1'; video.currentTime = 0; } // poster frame is taken mid-clip
-      video.controls = true;
-      film.classList.add('is-playing');
-      video.play().catch(() => { film.classList.remove('is-playing'); video.controls = false; });
-    });
-    video.addEventListener('ended', () => { film.classList.remove('is-playing'); video.controls = false; video.currentTime = 0; });
+  /* ───────── Films: muted, looping, no controls; paused while off-screen ───────── */
+  $$('.film video').forEach((video) => {
+    video.muted = true;
+    video.addEventListener('contextmenu', (e) => e.preventDefault());
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      new IntersectionObserver(([en]) => { if (en.isIntersecting) video.play().catch(() => {}); else video.pause(); }, { threshold: 0.25 }).observe(video);
+    }
   });
 
   /* ───────── Contact details + enquiry form ───────── */
