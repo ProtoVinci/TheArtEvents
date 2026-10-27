@@ -257,6 +257,7 @@
   films.forEach((film) => {
     const video = $('video', film);
     const play = $('.film__play', film);
+    video.addEventListener('contextmenu', (e) => e.preventDefault()); // no "Save video as" menu
     play.addEventListener('click', () => {
       films.forEach((f) => { if (f !== film) $('video', f).pause(); });
       if (!video.dataset.started) { video.dataset.started = '1'; video.currentTime = 0; } // poster frame is taken mid-clip
