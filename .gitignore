@@ -4,6 +4,9 @@
 # Raw originals (the site uses the cleaned copies in img/ and video/)
 assets/
 
+# Dependencies
+node_modules/
+
 # OS / editor noise
 .DS_Store
 Thumbs.db
