@@ -4,14 +4,7 @@
   "description": "The Art Events — Event décor & styling website",
   "private": true,
   "scripts": {
-    "dev": "npx serve .",
-    "build": "echo 'Static HTML project - no build needed'",
-    "lint": "echo 'No linter configured for this static HTML project'"
+    "dev": "npx serve ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@vercel/speed-insights": "^1.0.12"
-  }
+  "license": "ISC"
 }
